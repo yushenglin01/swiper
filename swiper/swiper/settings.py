@@ -26,7 +26,14 @@ SECRET_KEY = '$wnng^1o2!r_b$bf2wsol%m584nye6w^k+s))#oz=acq29vcn@'
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+# 修改成redils
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
 
+#: Only add pickle to this list if your broker is secured
+#: from unwanted access (see userguide/security.html)
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_RESULT_BACKEND = 'db+sqlite:///results.sqlite'
+CELERY_TASK_SERIALIZER = 'json'
 
 # Application definition
 
@@ -37,6 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'User',
+    'Vip',
 ]
 
 MIDDLEWARE = [
